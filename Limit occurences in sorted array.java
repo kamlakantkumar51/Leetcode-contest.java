@@ -1,16 +1,19 @@
-import java.util.*;
 class Solution {
     public int[] limitOccurrences(int[] nums, int k) {
         if(nums.length <= k){
             return nums;
         }
-        int writeidx = k;
-        for(int readidx = k;readidx < nums.length;readidx++){
-            if(nums[readidx] != nums[writeidx-k]){
-                nums[writeidx] = nums[readidx];
-                writeidx++;
+        int i=0;
+        for(int num:nums){
+            if( i < k || num!= nums[i-k]){
+                nums[i] = num;
+                i++;
             }
         }
-        return Arrays.copyOfRange(nums,0,writeidx);
+        int ans[] = new int[i];
+        for(int j=0;j<i;j++){
+            ans[j] = nums[j];
+        }
+        return ans;
     }
 }
